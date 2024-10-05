@@ -25,11 +25,12 @@ class Repository:
     users: List[User] = []
     groups: List[Group] = []
     def __init__(self):
-        cred = credentials.Certificate("repository/credentials.json")
-        firebase_admin.initialize_app(cred, {"databaseURL" : "https://morax-shared-financial-manager-default-rtdb.asia-southeast1.firebasedatabase.app/"})
+        cred = credentials.Certificate("repository/database.json")
+        firebase_admin.initialize_app(cred, {"databaseURL" : "https://morax-ea133-default-rtdb.asia-southeast1.firebasedatabase.app/"})
         scope = ['https://www.googleapis.com/auth/drive']
-        drive_credentials = service_account.Credentials.from_service_account_file(filename="repository/credentials.json", scopes=scope)
+        drive_credentials = service_account.Credentials.from_service_account_file(filename="repository/database.json", scopes=scope)
         self.service = build('drive', 'v3', credentials=drive_credentials)
+
         self.update_refs()
         
         self.load_users()
