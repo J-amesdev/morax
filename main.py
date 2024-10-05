@@ -17,8 +17,8 @@ class RouteManager(Routing):
 
 def main(page: ft.Page):
     # Set window parameters
-    page.window_width = 1024
-    page.window_height = 768
+    page.window.width = 1024
+    page.window.height = 768
     page.title = "Morax"
     
     # Set dark mode from prefs
@@ -64,9 +64,6 @@ def main(page: ft.Page):
     routing.route_changed = handle_route_changed
     
     opening_page.update_colors(colors)
-    
-    # Take initiative to update the opening page
-    opening_page.update()
     
     # page.client_storage.clear()
     

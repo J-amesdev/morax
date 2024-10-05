@@ -11,7 +11,7 @@ class GroupListView(ft.AnimatedSwitcher):
             duration = 300,
             reverse_duration = 300,
             switch_in_curve = ft.AnimationCurve.EASE_OUT,
-            switch_out_curve = ft.AnimationCurve.EASE_IN
+            switch_out_curve = ft.AnimationCurve.EASE_IN, content=ft.Text("")
         )
         
         ############################################################
