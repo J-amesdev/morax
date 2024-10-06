@@ -6,6 +6,7 @@ import flet as ft
 from PIL import Image
 import io
 import base64
+import datetime
 
 class AddReceivableDialogController:
     image_path = ""
@@ -14,6 +15,7 @@ class AddReceivableDialogController:
         self.repository = repository
         self.home_page = home_page
         self.add_receivable_dialog: AddReceivableDialog = home_page.add_receivable_dialog
+        self.current_year = datetime.date.today().year
         
         # Set the file picker
         self.file_picker = ft.FilePicker()
@@ -26,9 +28,9 @@ class AddReceivableDialogController:
         self.add_receivable_dialog.cancel_button.on_click = self.home_page.close_dialog
         
         self.add_receivable_dialog.item_name_textfield.on_change = self.item_info_change
-        self.add_receivable_dialog.item_month_textfield.on_change = self.item_info_change
-        self.add_receivable_dialog.item_day_textfield.on_change = self.item_info_change
-        self.add_receivable_dialog.item_year_textfield.on_change = self.item_info_change
+        self.add_receivable_dialog.item_month_dropdown.on_change = self.item_info_change
+        self.add_receivable_dialog.item_day_dropdown.on_change = self.item_info_change
+        self.add_receivable_dialog.item_year_dropdown.on_change = self.item_info_change
         self.add_receivable_dialog.item_amount_textfield.on_change = self.item_info_change
         self.add_receivable_dialog.item_description_textfield.on_change = self.item_info_change
         
@@ -106,8 +108,8 @@ class AddReceivableDialogController:
                     self.add_receivable_dialog.get_item_amount() != "",
                     self.add_receivable_dialog.get_item_description() != "",
                     self.add_receivable_dialog.get_item_creation_month() in utils.accepted_months,
-                    int(self.add_receivable_dialog.get_item_creation_day()) in range(0, 32),
-                    int(self.add_receivable_dialog.get_item_creation_year()) in range(2000, 2024),
+                    int(self.add_receivable_dialog.get_item_creation_day()) in range(0, 32), # 31 days + 1
+                    int(self.add_receivable_dialog.get_item_creation_year()) in range(2000, self.current_year + 1),
                     float(self.add_receivable_dialog.get_item_amount())]):
                 
                 self.add_receivable_dialog.add_item_button.disabled = False
