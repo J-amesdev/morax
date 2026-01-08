@@ -6,7 +6,7 @@
 ![screenshot](assets/app_screenshot.png)
 
 <br>
-Morax is a shared financial manager application for groups written in Flet and Python
+Morax is a shared financial manager application for groups written in Flet and Python.
 
 ## Try
 Install the following dependencies using pip
